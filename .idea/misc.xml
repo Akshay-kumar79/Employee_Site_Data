@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/Akshay kumar shaw/AndroidStudioProjects/EmployeeSiteData/app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="..\:/Users/Akshay kumar shaw/AndroidStudioProjects/EmployeeSiteData/app/src/main/res/layout/dropdown_item.xml" value="0.32222222222222224" />
+        <entry key="..\:/Users/Akshay kumar shaw/AndroidStudioProjects/EmployeeSiteData/app/src/main/res/layout/fragment_activity.xml" value="0.3178082191780822" />
+        <entry key="..\:/Users/Akshay kumar shaw/AndroidStudioProjects/EmployeeSiteData/app/src/main/res/layout/fragment_activity_report.xml" value="0.32222222222222224" />
+        <entry key="..\:/Users/Akshay kumar shaw/AndroidStudioProjects/EmployeeSiteData/app/src/main/res/layout/fragment_activity_report_filter.xml" value="0.32222222222222224" />
+        <entry key="..\:/Users/Akshay kumar shaw/AndroidStudioProjects/EmployeeSiteData/app/src/main/res/layout/fragment_add_employee_productivity.xml" value="0.30972222222222223" />
+        <entry key="..\:/Users/Akshay kumar shaw/AndroidStudioProjects/EmployeeSiteData/app/src/main/res/layout/fragment_add_initials.xml" value="0.32222222222222224" />
+        <entry key="..\:/Users/Akshay kumar shaw/AndroidStudioProjects/EmployeeSiteData/app/src/main/res/layout/fragment_employee_location_activity.xml" value="0.32222222222222224" />
+        <entry key="..\:/Users/Akshay kumar shaw/AndroidStudioProjects/EmployeeSiteData/app/src/main/res/layout/fragment_employee_report.xml" value="0.32222222222222224" />
+        <entry key="..\:/Users/Akshay kumar shaw/AndroidStudioProjects/EmployeeSiteData/app/src/main/res/layout/fragment_employee_report_filter.xml" value="0.32222222222222224" />
+        <entry key="..\:/Users/Akshay kumar shaw/AndroidStudioProjects/EmployeeSiteData/app/src/main/res/layout/fragment_employees.xml" value="0.32222222222222224" />
+        <entry key="..\:/Users/Akshay kumar shaw/AndroidStudioProjects/EmployeeSiteData/app/src/main/res/layout/fragment_enter_employee_productivity.xml" value="0.32222222222222224" />
+        <entry key="..\:/Users/Akshay kumar shaw/AndroidStudioProjects/EmployeeSiteData/app/src/main/res/layout/fragment_location_report.xml" value="0.32222222222222224" />
+        <entry key="..\:/Users/Akshay kumar shaw/AndroidStudioProjects/EmployeeSiteData/app/src/main/res/layout/fragment_location_report_filter.xml" value="0.32222222222222224" />
+        <entry key="..\:/Users/Akshay kumar shaw/AndroidStudioProjects/EmployeeSiteData/app/src/main/res/layout/fragment_locations.xml" value="0.3178082191780822" />
+        <entry key="..\:/Users/Akshay kumar shaw/AndroidStudioProjects/EmployeeSiteData/app/src/main/res/layout/fragment_main.xml" value="0.32222222222222224" />
+        <entry key="..\:/Users/Akshay kumar shaw/AndroidStudioProjects/EmployeeSiteData/app/src/main/res/layout/list_item_activity.xml" value="0.32222222222222224" />
+        <entry key="..\:/Users/Akshay kumar shaw/AndroidStudioProjects/EmployeeSiteData/app/src/main/res/layout/list_item_employee_report.xml" value="0.32222222222222224" />
+        <entry key="..\:/Users/Akshay kumar shaw/AndroidStudioProjects/EmployeeSiteData/app/src/main/res/layout/list_item_location_report.xml" value="0.32222222222222224" />
+        <entry key="..\:/Users/Akshay kumar shaw/AndroidStudioProjects/EmployeeSiteData/app/src/main/res/layout/list_item_name.xml" value="0.32222222222222224" />
+        <entry key="..\:/Users/Akshay kumar shaw/AndroidStudioProjects/EmployeeSiteData/app/src/main/res/layout/name_list_item.xml" value="0.32222222222222224" />
+        <entry key="..\:/Users/Akshay kumar shaw/AndroidStudioProjects/EmployeeSiteData/app/src/main/res/menu/pose_list_click_menu_item.xml" value="0.32222222222222224" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph.xml"
+    app:startDestination="@id/mainFragment">
+
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="employee.location.site.screens.MainFragment"
+        android:label="Home"
+        tools:layout="@layout/fragment_main">
+        <action
+            android:id="@+id/action_mainFragment_to_employeeLocationActivityFragment"
+            app:destination="@id/employeeLocationActivityFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_addEmployeeProductivityFragment"
+            app:destination="@id/addEmployeeProductivityFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_employeeReportFilterFragment"
+            app:destination="@id/employeeReportFilterFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_locationReportFilterFragment"
+            app:destination="@id/locationReportFilterFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_activityReportFragment"
+            app:destination="@id/activityReportFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/employeeLocationActivityFragment"
+        android:name="employee.location.site.screens.addInitials.EmployeeLocationActivityFragment"
+        android:label="Initials">
+        <action
+            android:id="@+id/action_employeeLocationActivityFragment_to_employeesFragment"
+            app:destination="@id/employeesFragment" />
+        <action
+            android:id="@+id/action_employeeLocationActivityFragment_to_locationsFragment"
+            app:destination="@id/locationsFragment" />
+        <action
+            android:id="@+id/action_employeeLocationActivityFragment_to_activityFragment"
+            app:destination="@id/activityFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/employeesFragment"
+        android:name="employee.location.site.screens.addInitials.EmployeesFragment"
+        android:label="Employees" />
+    <fragment
+        android:id="@+id/activityFragment"
+        android:name="employee.location.site.screens.addInitials.ActivityFragment"
+        android:label="Activities" />
+    <fragment
+        android:id="@+id/locationsFragment"
+        android:name="employee.location.site.screens.addInitials.LocationsFragment"
+        android:label="Locations" />
+    <fragment
+        android:id="@+id/addEmployeeProductivityFragment"
+        android:name="employee.location.site.screens.enterEmployeeProductivity.AddEmployeeProductivityFragment"
+        android:label="Add Employee Productivity"
+        tools:layout="@layout/fragment_add_employee_productivity" />
+    <fragment
+        android:id="@+id/employeeReportFilterFragment"
+        android:name="employee.location.site.screens.reports.employee.EmployeeReportFilterFragment"
+        android:label="Employee Report">
+        <action
+            android:id="@+id/action_employeeReportFilterFragment_to_employeeReportFragment"
+            app:destination="@id/employeeReportFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/employeeReportFragment"
+        android:name="employee.location.site.screens.reports.employee.EmployeeReportFragment"
+        android:label="{employeeName}">
+        <argument
+            android:name="employeeName"
+            app:argType="string" />
+        <argument
+            android:name="startDate"
+            app:argType="long" />
+        <argument
+            android:name="endDate"
+            app:argType="long" />
+    </fragment>
+    <fragment
+        android:id="@+id/locationReportFilterFragment"
+        android:name="employee.location.site.screens.reports.location.LocationReportFilterFragment"
+        android:label="Location Report">
+        <action
+            android:id="@+id/action_locationReportFilterFragment_to_locationReportFragment"
+            app:destination="@id/locationReportFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/locationReportFragment"
+        android:name="employee.location.site.screens.reports.location.LocationReportFragment"
+        android:label="{locationName}"
+        tools:layout="@layout/fragment_location_report">
+        <argument
+            android:name="locationName"
+            app:argType="string" />
+        <argument
+            android:name="startDate"
+            app:argType="long" />
+        <argument
+            android:name="endDate"
+            app:argType="long" />
+    </fragment>
+    <fragment
+        android:id="@+id/activityReportFragment"
+        android:name="employee.location.site.screens.reports.activity.ActivityReportFragment"
+        android:label="Activity Report" />
+</navigation>

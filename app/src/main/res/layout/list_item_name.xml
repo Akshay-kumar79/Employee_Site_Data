@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="position"
+            type="Integer" />
+        <variable
+            name="nameClickListener"
+            type="employee.location.site.adapters.NameClickListener" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:foreground="?selectableItemBackground"
+        android:onClick="@{() -> nameClickListener.onClick(position, popup)}">
+
+        <TextView
+            android:id="@+id/name_text"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            tools:text="employee 1"
+            android:textStyle="bold"
+            android:paddingHorizontal="16dp"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:gravity="center_vertical"/>
+
+        <View
+            android:id="@+id/popup"
+            android:layout_width="0dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="48dp"
+            android:layout_gravity="center"
+            android:layout_height="0dp"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.9dp"
+            android:layout_gravity="bottom"
+            android:layout_marginHorizontal="8dp"
+            android:background="#636363"/>
+
+    </FrameLayout>
+</layout>

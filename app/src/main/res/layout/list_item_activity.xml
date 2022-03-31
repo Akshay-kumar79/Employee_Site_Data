@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="position"
+            type="Integer" />
+
+        <variable
+            name="activityClickListener"
+            type="employee.location.site.adapters.ActivityClickListener" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:foreground="?selectableItemBackground"
+        android:onClick="@{() -> activityClickListener.onClick(position, popup)}">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/name_text"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:gravity="bottom"
+                android:paddingHorizontal="16dp"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                tools:text="activity 1" />
+
+            <TextView
+                android:id="@+id/cost_text"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:gravity="top"
+                android:paddingHorizontal="16dp"
+                android:textColor="#454545"
+                android:textSize="12sp"
+                tools:text="cost: $23" />
+
+        </LinearLayout>
+
+        <View
+            android:id="@+id/popup"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:layout_marginEnd="48dp"
+            android:layout_marginBottom="8dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.9dp"
+            android:layout_gravity="bottom"
+            android:layout_marginHorizontal="8dp"
+            android:background="#636363" />
+
+    </FrameLayout>
+</layout>
