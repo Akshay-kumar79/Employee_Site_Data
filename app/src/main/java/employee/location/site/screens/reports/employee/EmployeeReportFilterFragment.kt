@@ -52,6 +52,9 @@ class EmployeeReportFilterFragment : Fragment() {
                 calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
                 calendar.set(Calendar.MONTH, month)
                 calendar.set(Calendar.YEAR, year)
+                calendar.set(Calendar.HOUR_OF_DAY, 0)
+                calendar.set(Calendar.MINUTE, 0)
+                calendar.set(Calendar.SECOND, 0)
                 viewModel.startDateForEmployeeReport.value = calendar.timeInMillis
             }, c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH))
 
@@ -65,6 +68,9 @@ class EmployeeReportFilterFragment : Fragment() {
                 calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
                 calendar.set(Calendar.MONTH, month)
                 calendar.set(Calendar.YEAR, year)
+                calendar.set(Calendar.HOUR_OF_DAY, 23)
+                calendar.set(Calendar.MINUTE, 59)
+                calendar.set(Calendar.SECOND, 59)
                 viewModel.endDateForEmployeeReport.value = calendar.timeInMillis
             }, c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH))
 

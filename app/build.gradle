@@ -58,4 +58,8 @@ dependencies {
     //TypeToken and Gson
     implementation 'com.google.code.gson:gson:2.8.6'
 
+    //iText
+    implementation 'com.itextpdf:itext7-core:7.2.1'
+    implementation group: 'com.itextpdf', name: 'itextpdf', version: '5.5.13.1'
+
 }
