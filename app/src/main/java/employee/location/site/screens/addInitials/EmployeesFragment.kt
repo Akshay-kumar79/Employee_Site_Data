@@ -1,24 +1,42 @@
 package employee.location.site.screens.addInitials
 
+import android.app.Activity
+import android.content.ActivityNotFoundException
+import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
-import android.text.InputType
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.util.Log
+import android.view.*
 import android.widget.EditText
 import android.widget.PopupMenu
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import employee.location.site.R
 import employee.location.site.adapters.EmptyDataObserver
 import employee.location.site.adapters.NameAdapter
 import employee.location.site.adapters.NameClickListener
+import employee.location.site.database.WorkDao
+import employee.location.site.database.WorkDatabase
 import employee.location.site.databinding.FragmentEmployeesBinding
+import employee.location.site.utils.Constants
 import employee.location.site.viewmodels.AddInitialsViewModel
+import org.apache.poi.hssf.usermodel.HSSFWorkbook
+import org.apache.poi.ss.usermodel.Workbook
+import org.apache.poi.xssf.usermodel.XSSFWorkbook
+import java.io.IOException
+import java.io.InputStream
+
 
 class EmployeesFragment : Fragment() {
+
+    private var fileType = ""
+    private val extensionXLS = "XLS"
+    private val extensionXLXS = "XLXS"
 
     private lateinit var binding: FragmentEmployeesBinding
     private lateinit var viewModel: AddInitialsViewModel
@@ -27,6 +45,7 @@ class EmployeesFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        setHasOptionsMenu(true)
         binding = FragmentEmployeesBinding.inflate(inflater, container, false)
         viewModel = ViewModelProvider(this)[AddInitialsViewModel::class.java]
 
@@ -40,7 +59,7 @@ class EmployeesFragment : Fragment() {
     }
 
     private fun setUpRecyclerView() {
-        val employeeAdapter = NameAdapter(NameClickListener { pos, view->
+        val employeeAdapter = NameAdapter(NameClickListener { pos, view ->
             val popupMenu = PopupMenu(requireContext(), view)
             popupMenu.setOnMenuItemClickListener { menuItem ->
                 when (menuItem.itemId) {
@@ -84,6 +103,100 @@ class EmployeesFragment : Fragment() {
                 .create()
 
             dialog.show()
+        }
+    }
+
+    private fun checkPermission(): Boolean {
+        val per1 = ContextCompat.checkSelfPermission(requireActivity().applicationContext, android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
+        val per2 = ContextCompat.checkSelfPermission(requireActivity().applicationContext, android.Manifest.permission.READ_EXTERNAL_STORAGE)
+        return per1 == PackageManager.PERMISSION_GRANTED && per2 == PackageManager.PERMISSION_GRANTED
+    }
+
+    private fun requestPermission() {
+        ActivityCompat.requestPermissions(
+            requireActivity(), arrayOf(
+                android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                android.Manifest.permission.READ_EXTERNAL_STORAGE
+            ), 201
+        )
+    }
+
+    private val filePicker = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        if (result.resultCode == Activity.RESULT_OK) {
+            if (result.data != null && result.data!!.data != null) {
+
+                val uri = result.data!!.data!!
+
+                try {
+                    val inputStream: InputStream?
+                    var wb: Workbook? = null
+                    try {
+                        inputStream = requireContext().contentResolver.openInputStream(uri)
+
+                        if (fileType == extensionXLS)
+                            wb = HSSFWorkbook(inputStream);
+                        else
+                            wb = XSSFWorkbook(inputStream);
+
+
+                        inputStream?.close()
+                    } catch (e: IOException) {
+                        Toast.makeText(requireActivity().applicationContext, "First ${e.message}", Toast.LENGTH_SHORT).show()
+                        Log.d("TAG", e.message ?: "")
+                    }
+
+                    val sheet = wb!!.getSheetAt(0)
+                    val names = Constants.getDataFromExcel(sheet)
+                    for (name in names) {
+                        viewModel.addEmployeeToSp(name)
+                    }
+                } catch (ex: Exception) {
+                    Log.d("ReadExcelFile Error:", ex.message ?: "")
+                }
+
+
+            }
+        }
+    }
+
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.import_name_menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.action_import_xls) {
+            fileType = extensionXLS
+            OpenFilePicker()
+            return true
+        } else if (item.itemId == R.id.action_import_xlxs) {
+            fileType = extensionXLXS
+            OpenFilePicker()
+            return true
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    fun OpenFilePicker() {
+        try {
+            if (checkPermission()) {
+                ChooseFile()
+            }else{
+                requestPermission()
+            }
+        } catch (e: ActivityNotFoundException) {
+            Log.d("TAG","No activity can handle picking a file. Showing alternatives.")
+        }
+    }
+
+    fun ChooseFile() {
+        try {
+            val fileIntent = Intent(Intent.ACTION_GET_CONTENT)
+            fileIntent.addCategory(Intent.CATEGORY_OPENABLE)
+            if (fileType === extensionXLS) fileIntent.type = "application/vnd.ms-excel" else fileIntent.type = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+            filePicker.launch(fileIntent)
+        } catch (ex: java.lang.Exception) {
+            Log.d("TAG","ChooseFile error: " + ex.message.toString())
         }
     }
 

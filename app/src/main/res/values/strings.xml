@@ -19,4 +19,6 @@
     <string name="select_end_date">Select End Date</string>
     <string name="go">Go</string>
     <string name="add_employee_productivity">Add Employee Productivity</string>
+    <string name="import_from_xlsx">Import from .xlsx</string>
+    <string name="import_from_xls">import from .xls</string>
 </resources>
