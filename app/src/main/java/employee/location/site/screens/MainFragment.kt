@@ -42,7 +42,7 @@ class MainFragment : Fragment() {
         }
 
         binding.activityReport.setOnClickListener {
-            findNavController().navigate(MainFragmentDirections.actionMainFragmentToActivityReportFragment())
+            findNavController().navigate(MainFragmentDirections.actionMainFragmentToActivityReportFilterFragment())
         }
     }
 

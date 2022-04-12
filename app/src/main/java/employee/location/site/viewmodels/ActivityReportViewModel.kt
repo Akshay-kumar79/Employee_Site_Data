@@ -12,16 +12,21 @@ import employee.location.site.database.WorkDatabase
 import java.io.File
 import java.io.FileOutputStream
 
-class ActivityReportViewModel(application: Application) : AndroidViewModel(application) {
+class ActivityReportViewModel(
+    private val locName: String,
+    private val startDate: Long,
+    private val endDate: Long,
+    application: Application
+) : AndroidViewModel(application) {
 
     private val database = WorkDatabase.getInstance(application).workDao
 
-    val allWorksForActivityReport = database.getAllWorks()
+    val allWorksForActivityReport = database.getWorkForLocationReport(locName, startDate, endDate)
 
     val totalCostText = Transformations.map(allWorksForActivityReport){ works ->
         var totalCost = 0
         for (work in works){
-            totalCost += work.activity.cost
+            totalCost += work.activity.cost * work.value
         }
         "Total Cost = $totalCost"
     }

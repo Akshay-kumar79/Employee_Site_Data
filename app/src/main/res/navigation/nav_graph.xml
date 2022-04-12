@@ -23,8 +23,8 @@
             android:id="@+id/action_mainFragment_to_locationReportFilterFragment"
             app:destination="@id/locationReportFilterFragment" />
         <action
-            android:id="@+id/action_mainFragment_to_activityReportFragment"
-            app:destination="@id/activityReportFragment" />
+            android:id="@+id/action_mainFragment_to_activityReportFilterFragment"
+            app:destination="@id/activityReportFilterFragment" />
     </fragment>
     <fragment
         android:id="@+id/employeeLocationActivityFragment"
@@ -105,5 +105,23 @@
     <fragment
         android:id="@+id/activityReportFragment"
         android:name="employee.location.site.screens.reports.activity.ActivityReportFragment"
-        android:label="Activity Report" />
+        android:label="{locationName}" >
+        <argument
+            android:name="locationName"
+            app:argType="string" />
+        <argument
+            android:name="startDate"
+            app:argType="long" />
+        <argument
+            android:name="endDate"
+            app:argType="long" />
+    </fragment>
+    <fragment
+        android:id="@+id/activityReportFilterFragment"
+        android:name="employee.location.site.screens.reports.activity.ActivityReportFilterFragment"
+        android:label="Activity Report" >
+        <action
+            android:id="@+id/action_activityReportFilterFragment_to_activityReportFragment"
+            app:destination="@id/activityReportFragment" />
+    </fragment>
 </navigation>

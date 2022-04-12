@@ -63,6 +63,26 @@ class ReportViewModel(application: Application) : AndroidViewModel(application) 
         dateFormatter.format(c.time)
     }
 
+    // Activity Report Fragment
+    val startDateForActivityReport = MutableLiveData<Long>()
+    val endDateForActivityReport = MutableLiveData<Long>()
+    val selectedLocationForActivityReport = MutableLiveData<String>()
+
+    val startDateTextForActivityReport = Transformations.map(startDateForActivityReport){
+        val c = Calendar.getInstance()
+        c.timeInMillis = it
+
+        val dateFormatter = SimpleDateFormat("dd-MMM-yyyy", Locale.getDefault())
+        dateFormatter.format(c.time)
+    }
+    val endDateTextForActivityReport = Transformations.map(endDateForActivityReport){
+        val c = Calendar.getInstance()
+        c.timeInMillis = it
+
+        val dateFormatter = SimpleDateFormat("dd-MMM-yyyy", Locale.getDefault())
+        dateFormatter.format(c.time)
+    }
+
     init {
         // Employee Report Fragment
         allEmployees.value = preferenceUtils.getStringArrayFromSp(Constants.EMPLOYEE_LIST)
@@ -80,6 +100,12 @@ class ReportViewModel(application: Application) : AndroidViewModel(application) 
         startDateForLocationReport.value = calendarLocation.timeInMillis - 86400000 * 10
         endDateForLocationReport.value = calendarLocation.timeInMillis
         selectedLocationForLocationReport.value = application.getString(R.string.select_location)
+
+        // Activity Report Fragment
+        val calendarActivity = Calendar.getInstance()
+        startDateForActivityReport.value = calendarActivity.timeInMillis - 86400000 * 10
+        endDateForActivityReport.value = calendarActivity.timeInMillis
+        selectedLocationForActivityReport.value = application.getString(R.string.select_location)
     }
 
     // Employee Report Fragment
@@ -101,6 +127,19 @@ class ReportViewModel(application: Application) : AndroidViewModel(application) 
             Toast.makeText(getApplication(), "start date should be before end date", Toast.LENGTH_SHORT).show()
             return false
         } else if (selectedLocationForLocationReport.value!! == getApplication<Application?>().getString(R.string.select_location)) {
+            Toast.makeText(getApplication(), "please select location name", Toast.LENGTH_SHORT).show()
+            return false
+        } else {
+            return true
+        }
+    }
+
+    // Location Report Fragment
+    fun isValidActivityDetails(): Boolean {
+        if (startDateForActivityReport.value!! >= endDateForActivityReport.value!!) {
+            Toast.makeText(getApplication(), "start date should be before end date", Toast.LENGTH_SHORT).show()
+            return false
+        } else if (selectedLocationForActivityReport.value!! == getApplication<Application?>().getString(R.string.select_location)) {
             Toast.makeText(getApplication(), "please select location name", Toast.LENGTH_SHORT).show()
             return false
         } else {

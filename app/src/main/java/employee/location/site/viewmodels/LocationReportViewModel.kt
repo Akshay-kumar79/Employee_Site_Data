@@ -12,7 +12,6 @@ class LocationReportViewModel(
     application: Application
 ) : AndroidViewModel(application) {
 
-
     private val database = WorkDatabase.getInstance(application).workDao
 
     val allWorksForLocationReport = database.getWorkForLocationReport(locName, startDate, endDate)
@@ -20,7 +19,7 @@ class LocationReportViewModel(
     val totalCostText = Transformations.map(allWorksForLocationReport){ works ->
         var totalCost = 0
         for (work in works){
-            totalCost += work.activity.cost
+            totalCost += work.activity.cost * work.value
         }
         "Total Cost = $totalCost"
     }

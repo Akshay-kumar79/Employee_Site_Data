@@ -19,7 +19,7 @@ class EmployeeReportViewModel(
     val totalCostText = Transformations.map(allWorksForEmployeeReport){ works ->
         var totalCost = 0
         for (work in works){
-            totalCost += work.activity.cost
+            totalCost += work.activity.cost * work.value
         }
         "Total Cost = $totalCost"
     }

@@ -1,6 +1,7 @@
 package employee.location.site.screens.reports.activity
 
 import android.app.Activity
+import android.app.Application
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
@@ -12,15 +13,20 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.navArgs
 import employee.location.site.adapters.EmptyDataObserver
 import employee.location.site.adapters.LocationReportAdapter
 import employee.location.site.databinding.FragmentActivityReportBinding
 import employee.location.site.utils.PDFUtility
 import employee.location.site.utils.PDF_REPORT_TYPE_ACTIVITY
+import employee.location.site.viewModelFactories.ActivityReportViewModelFactory
+import employee.location.site.viewModelFactories.LocationReportViewModelFactory
 import employee.location.site.viewmodels.ActivityReportViewModel
 import java.io.FileOutputStream
 
 class ActivityReportFragment : Fragment(), PDFUtility.OnDocumentClose {
+
+    private val args: ActivityReportFragmentArgs by navArgs()
 
     private lateinit var binding: FragmentActivityReportBinding
     private lateinit var viewModel: ActivityReportViewModel
@@ -31,7 +37,10 @@ class ActivityReportFragment : Fragment(), PDFUtility.OnDocumentClose {
     ): View {
         setHasOptionsMenu(true)
         binding = FragmentActivityReportBinding.inflate(inflater, container, false)
-        viewModel = ViewModelProvider(this)[ActivityReportViewModel::class.java]
+
+        val application: Application = requireNotNull(this.activity).application
+        val viewModelFactory = ActivityReportViewModelFactory(args.locationName, args.startDate, args.endDate, application)
+        viewModel = ViewModelProvider(this, viewModelFactory)[ActivityReportViewModel::class.java]
 
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
