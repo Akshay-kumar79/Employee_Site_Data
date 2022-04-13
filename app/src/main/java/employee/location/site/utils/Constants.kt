@@ -17,6 +17,7 @@ object Constants {
 
         for (row in sheet.rowIterator()){
             row.getCell(0, Row.MissingCellPolicy.CREATE_NULL_AS_BLANK).setCellType(CellType.STRING)
+            if (row.getCell(0, Row.MissingCellPolicy.CREATE_NULL_AS_BLANK).stringCellValue.trim().isNotEmpty())
             names.add(row.getCell(0, Row.MissingCellPolicy.CREATE_NULL_AS_BLANK).stringCellValue)
         }
 
@@ -31,6 +32,7 @@ object Constants {
             row.getCell(0, Row.MissingCellPolicy.CREATE_NULL_AS_BLANK).setCellType(CellType.STRING)
             row.getCell(1, Row.MissingCellPolicy.CREATE_NULL_AS_BLANK).setCellType(CellType.NUMERIC)
 
+            if (row.getCell(0, Row.MissingCellPolicy.CREATE_NULL_AS_BLANK).stringCellValue.trim().isNotEmpty())
             names.add(
                 Activity(
                     row.getCell(0, Row.MissingCellPolicy.CREATE_NULL_AS_BLANK).stringCellValue,

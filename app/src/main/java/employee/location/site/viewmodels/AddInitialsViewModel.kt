@@ -54,9 +54,11 @@ class AddInitialsViewModel(application: Application) : AndroidViewModel(applicat
 
     fun addEmployeeToSp(employeeName: String) {
         val newArray = allEmployees.value!!
-        newArray.add(employeeName)
 
-        preferenceUtils.addStringArrayToSp(Constants.EMPLOYEE_LIST, newArray)
+        if (!newArray.contains(employeeName)) {
+            newArray.add(employeeName)
+            preferenceUtils.addStringArrayToSp(Constants.EMPLOYEE_LIST, newArray)
+        }
     }
 
     fun removeEmployeeFromSp(pos: Int){
@@ -68,9 +70,11 @@ class AddInitialsViewModel(application: Application) : AndroidViewModel(applicat
 
     fun addLocationToSp(locationName: String) {
         val newArray = allLocations.value!!
-        newArray.add(locationName)
 
-        preferenceUtils.addStringArrayToSp(Constants.LOCATION_LIST, newArray)
+        if (!newArray.contains(locationName)) {
+            newArray.add(locationName)
+            preferenceUtils.addStringArrayToSp(Constants.LOCATION_LIST, newArray)
+        }
     }
 
     fun removeLocationFromSp(pos: Int){
@@ -82,9 +86,11 @@ class AddInitialsViewModel(application: Application) : AndroidViewModel(applicat
 
     fun addActivityToSp(activity: Activity) {
         val newArray = allActivities.value!!
-        newArray.add(activity)
 
-        preferenceUtils.addActivityArrayToSp(Constants.ACTIVITY_LIST, newArray)
+        if (!newArray.contains(activity)) {
+            newArray.add(activity)
+            preferenceUtils.addActivityArrayToSp(Constants.ACTIVITY_LIST, newArray)
+        }
     }
 
     fun removeActivityFromSp(pos: Int){
