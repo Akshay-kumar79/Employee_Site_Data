@@ -15,6 +15,7 @@ import employee.location.site.utils.Constants
 import employee.location.site.utils.PreferenceUtils
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.collections.ArrayList
 
 class ReportViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -65,6 +66,8 @@ class ReportViewModel(application: Application) : AndroidViewModel(application) 
     }
 
     // Activity Report Fragment
+    val allActivities = MutableLiveData<ArrayList<Activity>>()
+
     val startDateForActivityReport = MutableLiveData<Long>()
     val endDateForActivityReport = MutableLiveData<Long>()
     val selectedActivityForActivityReport = MutableLiveData<String>()
@@ -103,6 +106,8 @@ class ReportViewModel(application: Application) : AndroidViewModel(application) 
         selectedLocationForLocationReport.value = application.getString(R.string.select_location)
 
         // Activity Report Fragment
+        allActivities.value = preferenceUtils.getActivityArrayFromSp(Constants.ACTIVITY_LIST)
+
         val calendarActivity = Calendar.getInstance()
         startDateForActivityReport.value = calendarActivity.timeInMillis - 86400000 * 10
         endDateForActivityReport.value = calendarActivity.timeInMillis

@@ -16,6 +16,7 @@ import employee.location.site.utils.Constants
 import employee.location.site.utils.PreferenceUtils
 import employee.location.site.viewmodels.ReportViewModel
 import java.util.*
+import kotlin.collections.ArrayList
 
 class ActivityReportFilterFragment : Fragment() {
 
@@ -41,8 +42,13 @@ class ActivityReportFilterFragment : Fragment() {
     }
 
     private fun setObservers() {
-        viewModel.allLocations.observe(viewLifecycleOwner) {
-            val arrayAdapter = ArrayAdapter(requireContext(), R.layout.dropdown_item, it)
+        viewModel.allActivities.observe(viewLifecycleOwner) {
+            val stringArray = ArrayList<String>()
+            for(activity in it){
+                stringArray.add(activity.activityName)
+            }
+
+            val arrayAdapter = ArrayAdapter(requireContext(), R.layout.dropdown_item, stringArray)
             binding.selectLocationDropdown.setAdapter(arrayAdapter)
         }
     }
