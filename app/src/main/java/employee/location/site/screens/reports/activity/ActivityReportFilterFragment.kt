@@ -10,9 +10,10 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import employee.location.site.R
-import employee.location.site.databinding.FragmentActivityReportBinding
 import employee.location.site.databinding.FragmentActivityReportFilterBinding
-import employee.location.site.screens.reports.location.LocationReportFilterFragmentDirections
+import employee.location.site.models.Activity
+import employee.location.site.utils.Constants
+import employee.location.site.utils.PreferenceUtils
 import employee.location.site.viewmodels.ReportViewModel
 import java.util.*
 
@@ -20,6 +21,7 @@ class ActivityReportFilterFragment : Fragment() {
 
     private lateinit var binding: FragmentActivityReportFilterBinding
     private lateinit var viewModel: ReportViewModel
+    private lateinit var preferenceUtils: PreferenceUtils
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,6 +29,7 @@ class ActivityReportFilterFragment : Fragment() {
     ): View {
         binding = FragmentActivityReportFilterBinding.inflate(inflater, container, false)
         viewModel = ViewModelProvider(this)[ReportViewModel::class.java]
+        preferenceUtils = PreferenceUtils(requireContext().applicationContext)
 
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
@@ -38,7 +41,7 @@ class ActivityReportFilterFragment : Fragment() {
     }
 
     private fun setObservers() {
-        viewModel.allLocations.observe(viewLifecycleOwner){
+        viewModel.allLocations.observe(viewLifecycleOwner) {
             val arrayAdapter = ArrayAdapter(requireContext(), R.layout.dropdown_item, it)
             binding.selectLocationDropdown.setAdapter(arrayAdapter)
         }
@@ -78,13 +81,24 @@ class ActivityReportFilterFragment : Fragment() {
         }
 
         binding.goButton.setOnClickListener {
-            if (viewModel.isValidActivityDetails()){
+            if (viewModel.isValidActivityDetails()) {
+
+                var activity = Activity(getString(R.string.select_activity), 0)
+                for (act in preferenceUtils.getActivityArrayFromSp(Constants.ACTIVITY_LIST)) {
+                    if (act.activityName == viewModel.selectedActivityForActivityReport.value!!) {
+                        activity = act
+                        break
+                    }
+                }
                 findNavController().navigate(
                     ActivityReportFilterFragmentDirections.actionActivityReportFilterFragmentToActivityReportFragment(
-                        viewModel.selectedLocationForActivityReport.value!!,
+                        activity,
+                        activity.activityName,
                         viewModel.startDateForActivityReport.value!!,
                         viewModel.endDateForActivityReport.value!!
-                    ))
+                    )
+                )
+
             }
         }
     }

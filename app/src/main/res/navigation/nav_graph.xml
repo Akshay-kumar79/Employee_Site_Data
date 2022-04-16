@@ -105,10 +105,13 @@
     <fragment
         android:id="@+id/activityReportFragment"
         android:name="employee.location.site.screens.reports.activity.ActivityReportFragment"
-        android:label="{locationName}" >
+        android:label="{activityName}" >
         <argument
-            android:name="locationName"
-            app:argType="string" />
+            android:name="activity"
+            app:argType="employee.location.site.models.Activity" />
+        <argument
+            android:name="activityName"
+            app:argType="string"/>
         <argument
             android:name="startDate"
             app:argType="long" />

@@ -39,7 +39,7 @@ class ActivityReportFragment : Fragment(), PDFUtility.OnDocumentClose {
         binding = FragmentActivityReportBinding.inflate(inflater, container, false)
 
         val application: Application = requireNotNull(this.activity).application
-        val viewModelFactory = ActivityReportViewModelFactory(args.locationName, args.startDate, args.endDate, application)
+        val viewModelFactory = ActivityReportViewModelFactory(args.activity, args.startDate, args.endDate, application)
         viewModel = ViewModelProvider(this, viewModelFactory)[ActivityReportViewModel::class.java]
 
         binding.viewModel = viewModel

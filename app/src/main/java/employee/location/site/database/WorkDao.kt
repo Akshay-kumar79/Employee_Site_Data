@@ -1,8 +1,12 @@
 package employee.location.site.database
 
 import androidx.lifecycle.LiveData
-import androidx.room.*
+import androidx.room.Dao
+import androidx.room.Insert
 import androidx.room.OnConflictStrategy.ABORT
+import androidx.room.Query
+import androidx.room.Update
+import employee.location.site.models.Activity
 import employee.location.site.models.Work
 
 @Dao
@@ -22,6 +26,9 @@ interface WorkDao {
 
     @Query("select * from work_table where location == :locationName and date >= :startDate and date <= :endDate")
     fun getWorkForLocationReport(locationName: String, startDate: Long, endDate: Long): LiveData<List<Work>>
+
+    @Query("select * from work_table where activity == :activity and date >= :startDate and date <= :endDate")
+    fun getWorkForActivityReport(activity: Activity, startDate: Long, endDate: Long): LiveData<List<Work>>
 
     @Query("delete from work_table where id == :id")
     fun delete(id: Long)

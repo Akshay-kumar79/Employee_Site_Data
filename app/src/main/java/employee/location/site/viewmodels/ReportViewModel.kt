@@ -9,6 +9,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import employee.location.site.R
 import employee.location.site.database.WorkDatabase
+import employee.location.site.models.Activity
 import employee.location.site.models.Work
 import employee.location.site.utils.Constants
 import employee.location.site.utils.PreferenceUtils
@@ -66,7 +67,7 @@ class ReportViewModel(application: Application) : AndroidViewModel(application) 
     // Activity Report Fragment
     val startDateForActivityReport = MutableLiveData<Long>()
     val endDateForActivityReport = MutableLiveData<Long>()
-    val selectedLocationForActivityReport = MutableLiveData<String>()
+    val selectedActivityForActivityReport = MutableLiveData<String>()
 
     val startDateTextForActivityReport = Transformations.map(startDateForActivityReport){
         val c = Calendar.getInstance()
@@ -105,7 +106,7 @@ class ReportViewModel(application: Application) : AndroidViewModel(application) 
         val calendarActivity = Calendar.getInstance()
         startDateForActivityReport.value = calendarActivity.timeInMillis - 86400000 * 10
         endDateForActivityReport.value = calendarActivity.timeInMillis
-        selectedLocationForActivityReport.value = application.getString(R.string.select_location)
+        selectedActivityForActivityReport.value = application.getString(R.string.select_activity)
     }
 
     // Employee Report Fragment
@@ -139,8 +140,8 @@ class ReportViewModel(application: Application) : AndroidViewModel(application) 
         if (startDateForActivityReport.value!! >= endDateForActivityReport.value!!) {
             Toast.makeText(getApplication(), "start date should be before end date", Toast.LENGTH_SHORT).show()
             return false
-        } else if (selectedLocationForActivityReport.value!! == getApplication<Application?>().getString(R.string.select_location)) {
-            Toast.makeText(getApplication(), "please select location name", Toast.LENGTH_SHORT).show()
+        } else if (selectedActivityForActivityReport.value!! == getApplication<Application?>().getString(R.string.select_activity)) {
+            Toast.makeText(getApplication(), "please select activity", Toast.LENGTH_SHORT).show()
             return false
         } else {
             return true
