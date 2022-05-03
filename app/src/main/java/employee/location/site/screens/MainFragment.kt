@@ -1,5 +1,6 @@
 package employee.location.site.screens
 
+import android.R
 import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
@@ -66,21 +67,22 @@ class MainFragment : Fragment() {
         item.setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER)
 
         val languageItem = menu.add("Language")
-        item.setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER)
+        languageItem.setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER)
 
         super.onCreateOptionsMenu(menu, inflater)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.title == "Clear All Data") {
-            lifecycleScope.launch(Dispatchers.IO) {
-                database.deleteAll()
-            }
-            preferenceUtils.remove(Constants.ACTIVITY_LIST)
-            preferenceUtils.remove(Constants.LOCATION_LIST)
-            preferenceUtils.remove(Constants.EMPLOYEE_LIST)
-
-            Toast.makeText(requireContext(), "all data is cleared", Toast.LENGTH_SHORT).show()
+            AlertDialog.Builder(context)
+                .setTitle("Clear All Data")
+                .setMessage("Are you sure you want to clear all data?")
+                .setPositiveButton(R.string.ok) { dialog, which ->
+                   clearData()
+                }
+                .setNegativeButton(R.string.cancel, null)
+                .setIcon(R.drawable.ic_dialog_alert)
+                .show()
 
         } else if (item.title == "Language") {
             val alt_bld: AlertDialog.Builder = AlertDialog.Builder(requireContext())
@@ -110,6 +112,17 @@ class MainFragment : Fragment() {
             alert.show()
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    private fun clearData() {
+        lifecycleScope.launch(Dispatchers.IO) {
+            database.deleteAll()
+        }
+        preferenceUtils.remove(Constants.ACTIVITY_LIST)
+        preferenceUtils.remove(Constants.LOCATION_LIST)
+        preferenceUtils.remove(Constants.EMPLOYEE_LIST)
+
+        Toast.makeText(requireContext(), "all data is cleared", Toast.LENGTH_SHORT).show()
     }
 
     private fun setLocale(language: String) {
