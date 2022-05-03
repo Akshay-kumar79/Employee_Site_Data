@@ -18,7 +18,7 @@
             android:id="@+id/employees"
             android:layout_width="match_parent"
             android:layout_height="100dp"
-            android:text="Employees"
+            android:text="@string/employees"
             android:layout_marginHorizontal="16dp"
             android:layout_marginTop="24dp" />
 
@@ -26,7 +26,7 @@
             android:id="@+id/locations"
             android:layout_width="match_parent"
             android:layout_height="100dp"
-            android:text="Locations"
+            android:text="@string/locations"
             android:layout_marginHorizontal="16dp"
             android:layout_marginTop="16dp" />
 
@@ -34,7 +34,7 @@
             android:id="@+id/activities"
             android:layout_width="match_parent"
             android:layout_height="100dp"
-            android:text="Activities"
+            android:text="@string/activities"
             android:layout_marginHorizontal="16dp"
             android:layout_marginTop="16dp" />
 

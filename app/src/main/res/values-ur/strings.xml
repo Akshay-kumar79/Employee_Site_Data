@@ -10,18 +10,18 @@
     <string name="select_activity">Select Activity</string>
     <string name="value">Value</string>
     <string name="done">done</string>
-    <string name="employee_report">Employee Report</string>
-    <string name="location_report">Location Report</string>
-    <string name="activity_report">Activity Report</string>
-    <string name="employee_location_activity">Employee, Location, Activity</string>
+    <string name="employee_report">کارکن کی تکمیل کی رپورٹ پرنٹ کریں۔</string>
+    <string name="location_report">مقام کے لحاظ سے کارکنوں کی کارکردگی کی رپورٹ پرنٹ کریں۔</string>
+    <string name="activity_report">کام کی نوعیت کے مطابق کامیابی کی رپورٹ پرنٹ کرنا</string>
+    <string name="employee_location_activity">کارکنوں کے نام: مقامات: کاروبار اور سرگرمیاں</string>
     <string name="enter_employee_productivity">Enter Employee Productivity</string>
     <string name="select_start_date">Select start date</string>
     <string name="select_end_date">Select End Date</string>
     <string name="go">Go</string>
-    <string name="add_employee_productivity">Add Employee Productivity</string>
+    <string name="add_employee_productivity">کارکن کی پیداوری کو ریکارڈ کرنا</string>
     <string name="import_from_xlsx">Import from .xlsx</string>
     <string name="import_from_xls">import from .xls</string>
-    <string name="employees">Employees</string>
-    <string name="locations">Locations</string>
-    <string name="activities">Activities</string>
+    <string name="employees">کارکنوں کے نام: </string>
+    <string name="locations">  مقامات: </string>
+    <string name="activities">  کاروبار اور سرگرمیاں</string>
 </resources>

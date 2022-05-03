@@ -43,15 +43,15 @@
     <fragment
         android:id="@+id/employeesFragment"
         android:name="employee.location.site.screens.addInitials.EmployeesFragment"
-        android:label="Employees" />
+        android:label="@string/employees" />
     <fragment
         android:id="@+id/activityFragment"
         android:name="employee.location.site.screens.addInitials.ActivityFragment"
-        android:label="Activities" />
+        android:label="@string/activities" />
     <fragment
         android:id="@+id/locationsFragment"
         android:name="employee.location.site.screens.addInitials.LocationsFragment"
-        android:label="Locations" />
+        android:label="@string/locations" />
     <fragment
         android:id="@+id/addEmployeeProductivityFragment"
         android:name="employee.location.site.screens.enterEmployeeProductivity.AddEmployeeProductivityFragment"
@@ -60,7 +60,7 @@
     <fragment
         android:id="@+id/employeeReportFilterFragment"
         android:name="employee.location.site.screens.reports.employee.EmployeeReportFilterFragment"
-        android:label="Employee Report">
+        android:label="@string/employee_report">
         <action
             android:id="@+id/action_employeeReportFilterFragment_to_employeeReportFragment"
             app:destination="@id/employeeReportFragment" />
@@ -82,7 +82,7 @@
     <fragment
         android:id="@+id/locationReportFilterFragment"
         android:name="employee.location.site.screens.reports.location.LocationReportFilterFragment"
-        android:label="Location Report">
+        android:label="@string/location_report">
         <action
             android:id="@+id/action_locationReportFilterFragment_to_locationReportFragment"
             app:destination="@id/locationReportFragment" />
@@ -122,7 +122,7 @@
     <fragment
         android:id="@+id/activityReportFilterFragment"
         android:name="employee.location.site.screens.reports.activity.ActivityReportFilterFragment"
-        android:label="Activity Report" >
+        android:label="@string/activity_report" >
         <action
             android:id="@+id/action_activityReportFilterFragment_to_activityReportFragment"
             app:destination="@id/activityReportFragment" />

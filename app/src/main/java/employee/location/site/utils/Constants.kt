@@ -7,6 +7,11 @@ import org.apache.poi.ss.usermodel.Sheet
 
 object Constants {
 
+    const val LANGUAGE = "language"
+    const val LANGUAGE_ENGLISH = 0
+    const val LANGUAGE_ARABIC = 1
+    const val LANGUAGE_URDU = 2
+
     const val EMPLOYEE_LIST = "employee_list"
     const val LOCATION_LIST = "location_list"
     const val ACTIVITY_LIST = "activity_list"
